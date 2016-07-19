@@ -1,6 +1,7 @@
-package org.fastframework.util;
+package org.fastframework.mvc.util;
 
 import org.apache.commons.lang3.StringUtils;
+import org.fastframework.util.JSONUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

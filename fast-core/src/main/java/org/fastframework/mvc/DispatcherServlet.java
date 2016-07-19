@@ -1,7 +1,6 @@
 package org.fastframework.mvc;
 
-import org.fastframework.mvc.init.ClassCollection;
-import org.fastframework.util.MVCHelper;
+import org.fastframework.mvc.util.MVCHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +33,7 @@ public class DispatcherServlet extends HttpServlet {
      */
     @Override
     public void init() throws ServletException {
-//        CollectionUtils.init(); TODO
+        ControllerCollection.init();
     }
 
     @Override
@@ -54,7 +53,7 @@ public class DispatcherServlet extends HttpServlet {
         }
 
         // 如果路由Map存在该请求路由,则转发到映射器处理
-        if (ClassCollection.methodMap.containsKey(requestPath)) {
+        if (ControllerCollection.methodMap.containsKey(requestPath)) {
 
         }
     }
