@@ -1,7 +1,7 @@
 package org.fastframework.mvc;
 
 import org.fastframework.mvc.init.ClassCollection;
-import org.fastframework.util.MVCHelper;
+import org.fastframework.mvc.util.MVCHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +34,7 @@ public class DispatcherServlet extends HttpServlet {
      */
     @Override
     public void init() throws ServletException {
-//        CollectionUtils.init(); TODO
+        ClassCollection.init();
     }
 
     @Override

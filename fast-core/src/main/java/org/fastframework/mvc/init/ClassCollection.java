@@ -11,4 +11,7 @@ public class ClassCollection {
     public static Map<String,MethodBody> methodMap;
 
 
+    public static void init() {
+
+    }
 }
