@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.fast</groupId>
+	<artifactId>fast-framework</artifactId>
+	<version>0.0.1</version>
+	<packaging>pom</packaging>
+
+	<name>fast-project</name>
+	<url>http://www.bysocket.com</url>
+	<description> Fast Powerful Java Full-Stack Framework</description>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	
+	<organization>
+		<name>BYSocket Open Source</name>
+		<url>http://www.bysocket.com</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>BYSocket Open Source</name>
+			<email>bysocket@aliyun.com</email>
+		</developer>
+	</developers>
+
+	<modules>
+		<module>fast-core</module>
+		<module>fast-sample</module>
+	</modules>
+</project>
