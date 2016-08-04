@@ -5,10 +5,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.lang.annotation.Annotation;
+import java.net.JarURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
+import java.util.stream.Collectors;
 
 /**
  * 类扫描工具类
@@ -42,22 +47,16 @@ public class ClassUtil {
     }
 
     /**
-     * 加载类
+     * 根据包名和注解,获取包下的有该注解的类列表
      *
-     * @param className
-     * @param initialize
+     * @param packageName
+     * @param annotationClass
      * @return
      */
-    public static Class<?> loadClass(String className,Boolean initialize) {
-        Class<?> clazz;
-        try {
-            clazz = Class.forName(className,initialize,getCurrentClassLoader());
-            System.out.println(className);
-        } catch (ClassNotFoundException e) {
-            LOGGER.error("加载类错误");
-            throw new RuntimeException(e);
-        }
-        return clazz;
+    public static List<Class<?>> getClassListByAnnotation(String packageName, Class<? extends Annotation> annotationClass) {
+        List<Class<?>> classList     = getClassList(packageName);
+        return classList.stream().filter(clazz ->
+                clazz.isAnnotationPresent(annotationClass)).collect(Collectors.toList());
     }
 
     /**
@@ -81,9 +80,16 @@ public class ClassUtil {
                         // 若在 class 目录,添加类
                         String packagePath = url.getPath().replaceAll("%20", " ");
                         addClass(classList,packagePath,packageName);
+                    } else if (URL_PROTOCOL_JAR.equals(protocol)) {
+                        // TODO 若在 jar 包中,则解析 jar 包中的 entry
+                        JarURLConnection jarURLConnection = (JarURLConnection) url.openConnection();
+                        JarFile jarFile = jarURLConnection.getJarFile();
+                        Enumeration<JarEntry> jarEntryEnumeration = jarFile.entries();
+                        while(jarEntryEnumeration.hasMoreElements()) {
+                            JarEntry jarEntry   = jarEntryEnumeration.nextElement();
+                            String jarEntryName = jarEntry.getName();
+                        }
                     }
-
-                    // TODO jar
                 }
             }
         } catch (Exception e) {
@@ -93,7 +99,7 @@ public class ClassUtil {
     }
 
     /**
-     * 根据 包路径 和 包名称,添加类到类列表
+     * 根据 包路径 和 包名称,添加类到类列表(递归扫描)
      *
      * @param classList
      * @param packagePath
@@ -143,7 +149,23 @@ public class ClassUtil {
         }
     }
 
-    public static void main(String[] args) {
-        getClassList("org.fastframework.core");
+    /**
+     * 加载类
+     *
+     * @param className
+     * @param initialize
+     * @return
+     */
+    public static Class<?> loadClass(String className,Boolean initialize) {
+        Class<?> clazz;
+        try {
+            clazz = Class.forName(className,initialize,getCurrentClassLoader());
+            // TODO log 类名
+            System.out.println(className);
+        } catch (ClassNotFoundException e) {
+            LOGGER.error("加载类错误");
+            throw new RuntimeException(e);
+        }
+        return clazz;
     }
 }
