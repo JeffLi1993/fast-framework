@@ -41,7 +41,7 @@ public class ClassHelper {
 			} else if (protocol.equals("jar")) {
 				JarFile jarFile = null;
 				try{
-	                jarFile = ((JarURLConnection) url.openConnection()).getJarFile();
+					jarFile = ((JarURLConnection) url.openConnection()).getJarFile();
 				} catch(Exception e){
 					e.printStackTrace();
 				}

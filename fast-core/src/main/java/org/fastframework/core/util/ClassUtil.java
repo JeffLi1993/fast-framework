@@ -25,19 +25,19 @@ public class ClassUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(ClassUtil.class);
 
     /** 包目录分隔符:点 */
-    public static final String PACKAGE_PATH_POINT    	 = ".";
+    public static final String PACKAGE_PATH_POINT        = ".";
     /** 包目录分隔符:点 */
     public static final String PACKAGE_PATH_SEPARATOR    = "/";
 
     /** URL 协议名:file */
-    public static final String URL_PROTOCOL_FILE    	 = "file";
+    public static final String URL_PROTOCOL_FILE         = "file";
     /** URL 协议名:jar */
-    public static final String URL_PROTOCOL_JAR    	     = "jar";
+    public static final String URL_PROTOCOL_JAR          = "jar";
 
     /** class 文件名后缀 */
-    public static final String CLASS_FILE_END   	     = ".class";
+    public static final String CLASS_FILE_END            = ".class";
     /** class 文件分隔符:点 */
-    public static final String CLASS_FILE_POINT   	     = PACKAGE_PATH_POINT;
+    public static final String CLASS_FILE_POINT          = PACKAGE_PATH_POINT;
 
     /** 当前线程的类加载 */
     private static final ClassLoader currentClassLoader = Thread.currentThread().getContextClassLoader();

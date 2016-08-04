@@ -1,5 +1,7 @@
 package org.fastframework.mvc.bean;
 
+import org.fastframework.mvc.annotation.RequestMethod;
+
 /**
  * 请求体
  * <p>
@@ -8,21 +10,21 @@ package org.fastframework.mvc.bean;
 public class RequestBody {
 
     /**
-     * 请求方法 [POST] [GET]
+     * 请求方法 [POST] [GET] {@link org.fastframework.mvc.annotation.RequestMethod}
      */
-    private String requestMethod;
+    private RequestMethod requestMethod;
 
     /**
      * 请求路由
      */
     private String requestPath;
 
-    public RequestBody(String requestMethod, String requestPath) {
+    public RequestBody(RequestMethod requestMethod, String requestPath) {
         this.requestMethod = requestMethod;
         this.requestPath = requestPath;
     }
 
-    public String getRequestMethod() {
+    public RequestMethod getRequestMethod() {
         return requestMethod;
     }
 
