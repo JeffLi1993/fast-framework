@@ -3,7 +3,7 @@ package org.fastframework.mvc.bean;
 import java.lang.reflect.Method;
 
 /**
- * 方法体
+ * 处理方法体
  * <p>
  * Created by bysocket on 16/7/19.
  */
@@ -32,4 +32,5 @@ public class HandlerBody {
     public String getResponseMediaType() {
         return responseMediaType;
     }
+
 }

@@ -1,5 +1,6 @@
 package org.fastframework.mvc;
 
+import org.fastframework.mvc.bean.HandlerBody;
 import org.fastframework.mvc.util.MVCHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,8 +42,10 @@ public class DispatcherServlet extends HttpServlet {
         // 设置请求默认编码
         request.setCharacterEncoding(MVCHelper.REQ_CHARACTER_UTF_8);
         // 请求相关信息
+        // 请求方法 [POST] [GET]
         String requestMethod = request.getMethod();
-        String requestPath   = MVCHelper.getRequestPath(request); // 请求路由
+        // 请求路由
+        String requestPath   = MVCHelper.getRequestPath(request);
 
         LOGGER.debug("[fast framework] {} : {}",requestMethod,requestPath);
 
@@ -52,9 +55,18 @@ public class DispatcherServlet extends HttpServlet {
             return;
         }
 
-        // 如果路由Map存在该请求路由,则转发到映射器处理
-        if (ControllerCollection.methodMap.containsKey(requestPath)) {
+        // 处理器映射
+        // 获取 handler
+        HandlerBody handler = HandlerMapping.getHandler(requestMethod,requestPath);
 
+        // null == handler
+        if (null == handler) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            return;
         }
+
+        // 调用 Handler
+        HandlerInvoker.invokeHandler(request,response,handler);
+        return;
     }
 }

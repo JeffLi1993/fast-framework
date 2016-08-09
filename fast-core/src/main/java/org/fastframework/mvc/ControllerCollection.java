@@ -67,4 +67,8 @@ public class ControllerCollection {
                     new HandlerBody(controllerClass,controllerMethod,responseMediaType));
         }
     }
+
+    public static Map<RequestBody, HandlerBody> getMethodMap() {
+        return methodMap;
+    }
 }

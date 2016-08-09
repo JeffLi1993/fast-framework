@@ -34,7 +34,7 @@ public class MVCHelper {
         String servletPath = request.getServletPath(); // /servlet/MyServlet
         String pathInfo    = request.getPathInfo();    // /a/b
 
-        return servletPath + StringUtils.defaultIfEmpty(pathInfo,StringUtils.EMPTY);
+        return (null != servletPath ? servletPath : "") + StringUtils.defaultIfEmpty(pathInfo,StringUtils.EMPTY);
     }
 
     /**
