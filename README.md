@@ -43,5 +43,4 @@ Console 出现,表示服务器成功启动:
 http://localhost:8080/hello?name=BYSocket
 ````
 会得到如下结果:<br>
-<img src="https://github.com/JeffLi1993/fast-framework/blob/master/doc/img/sample-result.png?raw=true" />
 ![sample结果图](https://github.com/JeffLi1993/fast-framework/blob/master/doc/img/sample-result.png)
