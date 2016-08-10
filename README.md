@@ -7,23 +7,23 @@
 - 目前提供 MVC ... 解决方案
 
 ### 快速入门
-##### 1. 必备环境
+#### 1. 必备环境
 - [Git 环境搭建](http://)
-- [Maven 环境搭建](http://)<br>
+- [Maven 环境搭建](http://www.bysocket.com/?p=1267)<br>
 
-##### 2. 下载 fast-framework 项目及 sample 案例
+#### 2. 下载 fast-framework 项目及 sample 案例
 ````
 git clone https://github.com/JeffLi1993/fast-framework.git
 ````
 
-##### 3. Maven 编译 sample 案例
+#### 3. Maven 编译 sample 案例
 ````
 cd fast-framework // cd 到工程根目录
 
 mvn clean install // 编译工程
 ````
 
-##### 4. 启动 sample 案例
+#### 4. 启动 sample 案例
 ````
 cd fast-sample // cd 到 sample 案例工程根目录
 mvn jetty:run  // 启动 sample 工程
@@ -37,7 +37,7 @@ Console 出现,表示服务器成功启动:
 [INFO] Starting scanner at interval of 10 seconds.
 ````
 
-##### 5. 访问 sample
+#### 5. 访问 sample
 在浏览器中打开:
 ````
 http://localhost:8080/hello?name=BYSocket
