@@ -9,7 +9,8 @@
 ### 快速入门
 ##### 1. 必备环境
 - [Git 环境搭建](http://)
-- [Maven 环境搭建](http://)
+- [Maven 环境搭建](http://)<br>
+
 ##### 2. 下载 fast-framework 项目及 sample 案例
 ````
 git clone https://github.com/JeffLi1993/fast-framework.git
@@ -41,5 +42,5 @@ Console 出现,表示服务器成功启动:
 ````
 http://localhost:8080/hello?name=BYSocket
 ````
-会得到如下结果:
+会得到如下结果:<br>
 ![sample结果图](http://www.bysocket.com/wp-content/uploads/2016/08/QQ20160810-0.png)
