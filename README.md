@@ -43,4 +43,8 @@ Console 出现,表示服务器成功启动:
 http://localhost:8080/hello?name=BYSocket
 ````
 会得到如下结果:<br>
+<div align=center>
+<img src="http://www.bysocket.com/wp-content/uploads/2016/08/111.png" width="100" height="100" />
+
 ![sample结果图](http://www.bysocket.com/wp-content/uploads/2016/08/111.png)
+</div>
