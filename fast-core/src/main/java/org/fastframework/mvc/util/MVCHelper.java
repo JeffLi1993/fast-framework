@@ -1,7 +1,6 @@
 package org.fastframework.mvc.util;
 
 import org.apache.commons.lang3.StringUtils;
-import org.fastframework.util.JSONUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class MVCHelper {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(JSONUtil.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MVCHelper.class);
 
     /** URL 目录分隔符 */
     public static final String URL_PATH_SEPARATOR		= "/";
