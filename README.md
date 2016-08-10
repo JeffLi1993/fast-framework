@@ -43,4 +43,4 @@ Console 出现,表示服务器成功启动:
 http://localhost:8080/hello?name=BYSocket
 ````
 会得到如下结果:<br>
-![sample结果图](http://www.bysocket.com/wp-content/uploads/2016/08/QQ20160810-0.png)
+![sample结果图](http://www.bysocket.com/wp-content/uploads/2016/08/111.png)
