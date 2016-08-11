@@ -14,6 +14,7 @@ public class WebUtil {
 	 * @return
 	 */
 	public static List<Object> getRequestParamMap(HttpServletRequest request) {
+		// TODO 应该 匹配 methodParam ，将 request param 转成 响应的 method 入参List
 		List<Object> requestParamList = new ArrayList<>();
 		Enumeration<String> paramNames = request.getParameterNames();
 		while (paramNames.hasMoreElements()) {

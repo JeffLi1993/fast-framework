@@ -160,8 +160,6 @@ public class ClassUtil {
         Class<?> clazz;
         try {
             clazz = Class.forName(className,initialize,getCurrentClassLoader());
-            // TODO log 类名
-            System.out.println(className);
         } catch (ClassNotFoundException e) {
             LOGGER.error("加载类错误");
             throw new RuntimeException(e);
