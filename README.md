@@ -1,7 +1,8 @@
-泥瓦匠本意：
-    " 生产占时不要用fast-framework
-      是想让大家如何理解 MVC 框架的核心
+泥瓦匠本意：<br>
+    " 生产暂时不要用fast-framework,
+      是想让大家如何理解 MVC 框架的核心,
       以后会带上系列实现文章"
+
 [![maven-central](https://img.shields.io/maven-central/v/com.bladejava/blade-core.svg?style=flat-square)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.bladejava%22)
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
 <br>
@@ -20,7 +21,9 @@
 ## 作者与学习乐园
 源码地址：我的[GitHub地址](https://github.com/JeffLi1993 "GitHub")<br>
 作者： [李强强](http://www.bysocket.com/ "李强强") 也叫 泥瓦匠<br>
-QQ群：编程之美 365234583  [立即加入](http://jq.qq.com/?_wv=1027&k=Sx4s4U "编程之美")
+QQ群：编程之美 365234583  [立即加入](http://jq.qq.com/?_wv=1027&k=Sx4s4U "编程之美")<br>
+欢迎阅读以下博文：<br>
+Fast-FrameWork系列文章：[传送门](http://www.bysocket.com/?cat=102)
 <br><br>
 
 ## 快速入门
