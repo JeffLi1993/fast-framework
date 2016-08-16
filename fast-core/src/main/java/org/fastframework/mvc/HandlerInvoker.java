@@ -6,6 +6,7 @@ import org.fastframework.util.WebUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -17,8 +18,8 @@ public class HandlerInvoker {
 
 	public static void invokeHandler(HttpServletRequest request, HttpServletResponse response, HandlerBody handler) {
 		// 从 Request 获取参数 - Controller.Method 的 ParamList
-		List<Object> controllerMethodParamList = WebUtil.getRequestParamMap(request);
-//		List<Object> controllerMethodParamList = WebUtil.getRequestParamMap(request, handler.getControllerMethod());
+		Method controllerMethod = handler.getControllerMethod();
+		List<Object> controllerMethodParamList = WebUtil.getRequestParamMap(request, controllerMethod.getParameterTypes());
 
 		// ReflectUtil 获取 Controller.Method 的返回值
 		Object controllerMethodResult = ReflectUtil.invokeControllerMethod(handler.getControllerClass(),

@@ -19,4 +19,13 @@ public class JSONController {
 		return user;
 	}
 
+	@RequestMapping(value = "/jsonbysocket",
+			method = RequestMethod.GET,
+			produces = MediaTypes.JSON_UTF_8)
+	public User json(String name, Integer age) {
+		User user = new User();
+		user.setName(name);
+		user.setAge(age);
+		return user;
+	}
 }

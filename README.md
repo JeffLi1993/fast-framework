@@ -58,9 +58,16 @@ Console 出现如下结果,表示服务器成功启动:
 ````
 
 #### 5. 访问 sample
-在浏览器中打开:
+在浏览器中打开 - text/plain; charset=UTF-8 :
 ````
 http://localhost:8080/hello?name=BYSocket
 ````
 会得到如下结果:<br>
 ![sample结果图](https://github.com/JeffLi1993/fast-framework/blob/master/doc/img/sample-result.png)
+
+在浏览器中打开 - application/json; charset=UTF-8 :
+````
+http://localhost:8080/json?name=BYSocket
+````
+会得到如下结果:<br>
+![sample结果图](https://github.com/JeffLi1993/fast-framework/blob/master/doc/img/sample-json-result.png)
