@@ -11,6 +11,7 @@ v0.1.1 更新：
 -----------------
 1、支持响应格式 application/json; charset=UTF-8
 2、
+3、基于 JDK 8 time包的时间工具类
 
 > 增加 fast-framework sample：
 -----------------
