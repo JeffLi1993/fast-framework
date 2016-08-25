@@ -10,6 +10,7 @@ v0.1.1 更新：
 > 增加 RESTful 支持：
 -----------------
 1、支持响应格式 application/json; charset=UTF-8
+2、
 
 > 增加 fast-framework sample：
 -----------------
