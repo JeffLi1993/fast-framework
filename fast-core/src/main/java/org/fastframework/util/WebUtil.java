@@ -17,6 +17,9 @@ public class WebUtil {
 	 * @return
 	 */
 	public static List<Object> getRequestParamMap(HttpServletRequest request, Class<?>[] controllerParamTypes) {
+
+		// TODO 杜琪 - POST / Content-Type
+
 		List<Object> requestParamList = new ArrayList<>();
 		Enumeration<String> paramNames = request.getParameterNames();
 		int i = 0;
