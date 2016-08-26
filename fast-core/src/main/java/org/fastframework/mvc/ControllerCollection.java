@@ -34,18 +34,17 @@ public class ControllerCollection {
 
     /**
      * 初始化
-     *
      */
     public static void init() {
         // 获取到 @Controller 注解的类列表
-        List<Class<?>> controllerClassList =  ClassUtil.getClassListByAnnotation(scanPackage, Controller.class);
+        List<Class<?>> controllerClassList = ClassUtil.getClassListByAnnotation(scanPackage, Controller.class);
         if (CollectionUtils.isNotEmpty(controllerClassList)) {
             for (Class<?> controllerClass : controllerClassList) {
                 // 获取并遍历所有 Controller 类中的所有方法
                 Method[] controllerMethods = controllerClass.getMethods();
                 if (ArrayUtils.isNotEmpty(controllerMethods)) {
                     for (Method controllerMethod : controllerMethods) {
-                        handlerControllerMethod(controllerMethod,controllerClass);
+                        handlerControllerMethod(controllerMethod, controllerClass);
                     }
                 }
             }
@@ -63,8 +62,8 @@ public class ControllerCollection {
             String requestPath = controllerMethod.getAnnotation(RequestMapping.class).value();
             RequestMethod requestMethod = controllerMethod.getAnnotation(RequestMapping.class).method();
             String responseMediaType = controllerMethod.getAnnotation(RequestMapping.class).produces();
-            methodMap.put(new RequestBody(requestMethod,requestPath),
-                    new HandlerBody(controllerClass,controllerMethod,responseMediaType));
+            methodMap.put(new RequestBody(requestMethod, requestPath),
+                new HandlerBody(controllerClass, controllerMethod, responseMediaType));
         }
     }
 

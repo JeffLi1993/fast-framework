@@ -15,9 +15,9 @@ public class HandlerBody {
 
     private String responseMediaType;
 
-    public HandlerBody(Class<?> controllerClass, Method controllerMethod,String responseMediaType) {
-        this.controllerClass   = controllerClass;
-        this.controllerMethod  = controllerMethod;
+    public HandlerBody(Class<?> controllerClass, Method controllerMethod, String responseMediaType) {
+        this.controllerClass = controllerClass;
+        this.controllerMethod = controllerMethod;
         this.responseMediaType = responseMediaType;
     }
 
