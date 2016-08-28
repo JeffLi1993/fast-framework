@@ -58,19 +58,22 @@ public class WebUtil {
 	}
 
 	public static Object getRequestBody(HttpServletRequest request, Class<?> clzz) {
-		InputStream is = null;
-		String tempStr = "";
+		InputStream is;
+		String tempStr;
 		Object result = null;
 		try {
 			is = request.getInputStream();
-			tempStr = IOUtils.toString(is, Charset.forName("UTF-8"));
+			if (request.getContentType().equals(MediaTypes.TEXT_PLAIN)) {
+				result = IOUtils.toString(is);
+			} else if (request.getContentType().equals(MediaTypes.JSON_UTF_8)) {
+				tempStr = IOUtils.toString(is, Charset.forName("UTF-8"));
+				result = JSONUtil.toObject(tempStr, clzz);
+			} else if (request.getContentType().equals(MediaTypes.JSON)) {
+				tempStr = IOUtils.toString(is);
+				result = JSONUtil.toObject(tempStr, clzz);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		if (request.getContentType().equals(MediaTypes.TEXT_PLAIN)) {
-			result = tempStr;
-		} else if (request.getContentType().equals(MediaTypes.JSON_UTF_8)) {
-			result = JSONUtil.toObject(tempStr, clzz);
 		}
 		return result;
 	}
