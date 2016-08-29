@@ -1,13 +1,9 @@
 package org.fastframework.util;
 
-import com.sun.org.apache.bcel.internal.generic.RET;
-
 import org.apache.commons.io.IOUtils;
-import org.codehaus.jackson.map.util.JSONPObject;
 import org.fastframework.mvc.annotation.MediaTypes;
 
 import javax.servlet.http.HttpServletRequest;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
@@ -20,6 +16,7 @@ import java.util.List;
  */
 public class WebUtil {
 
+	public static final String CHARSET_UTF_8 = "UTF-8";
 	/**
 	 * 从请求中获取所有参数
 	 *
@@ -57,6 +54,13 @@ public class WebUtil {
 		return requestParamList;
 	}
 
+	/**
+	 * 从请求体重获取对应的对象
+	 *
+	 * @param request
+	 * @param clzz
+	 * @return
+	 */
 	public static Object getRequestBody(HttpServletRequest request, Class<?> clzz) {
 		InputStream is;
 		String tempStr;
@@ -66,7 +70,7 @@ public class WebUtil {
 			if (request.getContentType().equals(MediaTypes.TEXT_PLAIN)) {
 				result = IOUtils.toString(is);
 			} else if (request.getContentType().equals(MediaTypes.JSON_UTF_8)) {
-				tempStr = IOUtils.toString(is, Charset.forName("UTF-8"));
+				tempStr = IOUtils.toString(is, Charset.forName(CHARSET_UTF_8));
 				result = JSONUtil.toObject(tempStr, clzz);
 			} else if (request.getContentType().equals(MediaTypes.JSON)) {
 				tempStr = IOUtils.toString(is);

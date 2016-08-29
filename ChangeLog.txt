@@ -5,14 +5,15 @@ v0.1.1 更新：
 > Bug 修复：
 -----------------
 1、修复入参多参数无序问题
-2、
+2、修复 POM 项目格式
 
 > 增加 RESTful 支持：
 -----------------
-1、支持响应格式 application/json; charset=UTF-8
-2、
+1、支持响应格式 Content-Type: application/json; charset=UTF-8
+2、支持 POST Content-Type: application/json 传输
 3、基于 JDK 8 time包的时间工具类
 
 > 增加 fast-framework sample：
 -----------------
-1、新增 JSON demo 案例
+1、新增 JSON 响应 demo 案例
+2、新增 POST 请求 User Bean 案例

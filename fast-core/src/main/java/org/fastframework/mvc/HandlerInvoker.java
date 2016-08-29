@@ -20,10 +20,21 @@ import java.util.ArrayList;
  */
 public class HandlerInvoker {
 
+	/**
+	 * 请求处理器
+	 * 根据请求,获取请求参数
+	 * 调用Method,获取返回值
+	 * 调用View,返回响应
+	 *
+	 * @param request
+	 * @param response
+	 * @param handler
+	 */
 	public static void invokeHandler(HttpServletRequest request, HttpServletResponse response, HandlerBody handler) {
 		List<Object> controllerMethodParamList = new ArrayList<>();
 		Method controllerMethod = handler.getControllerMethod();
 
+		// POST 请求
 		if (request.getMethod().equals(RequestMethod.POST.toString())) {
 			List<Class<?>> getParameterTypes = new ArrayList();
 			Class<?> postParamType = null;
@@ -39,7 +50,9 @@ public class HandlerInvoker {
 			Object postParamObject = WebUtil.getRequestBody(request, postParamType);
 			controllerMethodParamList.add(0, postParamObject);
 
-		} else if (request.getMethod().equals(RequestMethod.GET.toString())) {
+		}
+		// GET 请求
+		else if (request.getMethod().equals(RequestMethod.GET.toString())) {
 			// 从 Request 获取参数 - Controller.Method 的 ParamList
 			controllerMethodParamList = WebUtil.getRequestParamMap(request, controllerMethod.getParameterTypes());
 		}
