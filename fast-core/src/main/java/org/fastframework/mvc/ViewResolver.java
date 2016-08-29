@@ -38,6 +38,7 @@ public class ViewResolver {
 				String resultJSON = JSONUtil.toJSONString(controllerMethodResult);
 				LOGGER.debug("[fast framework] {} : 返回格式CharSet = {}, 返回结果 = {}",requestPath,
 						MediaTypes.JSON_UTF_8,resultJSON);
+				response.setContentType(MediaTypes.JSON_UTF_8);
 				response.getWriter().print(resultJSON);
 				return;
 			}

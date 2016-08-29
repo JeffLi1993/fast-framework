@@ -52,8 +52,9 @@ public class RestfulJSONController {
 	 */
 	@RequestMapping(value = "/user/add",
 			method = RequestMethod.POST,
-			produces = MediaTypes.TEXT_PLAIN_UTF_8)
-	public String addUser(@PostParam User user) {
-		return user == null ? "user is NULL !" : "Hello," + user.getName() + "!";
+			produces = MediaTypes.JSON_UTF_8)
+	public User addUser(@PostParam User user) {
+		user.setDesc("Blog: http://www.bysocket.com https://github.com/JeffLi1993");
+		return user;
 	}
 }
