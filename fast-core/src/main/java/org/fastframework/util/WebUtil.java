@@ -1,6 +1,16 @@
 package org.fastframework.util;
 
+import com.sun.org.apache.bcel.internal.generic.RET;
+
+import org.apache.commons.io.IOUtils;
+import org.codehaus.jackson.map.util.JSONPObject;
+import org.fastframework.mvc.annotation.MediaTypes;
+
 import javax.servlet.http.HttpServletRequest;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -17,8 +27,6 @@ public class WebUtil {
 	 * @return
 	 */
 	public static List<Object> getRequestParamMap(HttpServletRequest request, Class<?>[] controllerParamTypes) {
-
-		// TODO 杜琪 - POST / Content-Type
 
 		List<Object> requestParamList = new ArrayList<>();
 		Enumeration<String> paramNames = request.getParameterNames();
@@ -47,6 +55,27 @@ public class WebUtil {
 			i++;
 		}
 		return requestParamList;
+	}
+
+	public static Object getRequestBody(HttpServletRequest request, Class<?> clzz) {
+		InputStream is;
+		String tempStr;
+		Object result = null;
+		try {
+			is = request.getInputStream();
+			if (request.getContentType().equals(MediaTypes.TEXT_PLAIN)) {
+				result = IOUtils.toString(is);
+			} else if (request.getContentType().equals(MediaTypes.JSON_UTF_8)) {
+				tempStr = IOUtils.toString(is, Charset.forName("UTF-8"));
+				result = JSONUtil.toObject(tempStr, clzz);
+			} else if (request.getContentType().equals(MediaTypes.JSON)) {
+				tempStr = IOUtils.toString(is);
+				result = JSONUtil.toObject(tempStr, clzz);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }

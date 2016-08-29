@@ -1,5 +1,7 @@
 package org.fastframework.mvc;
 
+import org.fastframework.mvc.annotation.PostParam;
+import org.fastframework.mvc.annotation.RequestMethod;
 import org.fastframework.mvc.bean.HandlerBody;
 import org.fastframework.util.ReflectUtil;
 import org.fastframework.util.WebUtil;
@@ -7,7 +9,9 @@ import org.fastframework.util.WebUtil;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Handler 调用器
@@ -17,9 +21,28 @@ import java.util.List;
 public class HandlerInvoker {
 
 	public static void invokeHandler(HttpServletRequest request, HttpServletResponse response, HandlerBody handler) {
-		// 从 Request 获取参数 - Controller.Method 的 ParamList
+		List<Object> controllerMethodParamList = new ArrayList<>();
 		Method controllerMethod = handler.getControllerMethod();
-		List<Object> controllerMethodParamList = WebUtil.getRequestParamMap(request, controllerMethod.getParameterTypes());
+
+		if (request.getMethod().equals(RequestMethod.POST.toString())) {
+			List<Class<?>> getParameterTypes = new ArrayList();
+			Class<?> postParamType = null;
+
+			for (Parameter p: controllerMethod.getParameters()) {
+				if (p.isAnnotationPresent(PostParam.class)) {
+					postParamType = p.getType();
+				} else {
+					getParameterTypes.add(p.getType());
+				}
+			}
+			controllerMethodParamList = WebUtil.getRequestParamMap(request, getParameterTypes.toArray(new Class<?>[0]));
+			Object postParamObject = WebUtil.getRequestBody(request, postParamType);
+			controllerMethodParamList.add(0, postParamObject);
+
+		} else if (request.getMethod().equals(RequestMethod.GET.toString())) {
+			// 从 Request 获取参数 - Controller.Method 的 ParamList
+			controllerMethodParamList = WebUtil.getRequestParamMap(request, controllerMethod.getParameterTypes());
+		}
 
 		// ReflectUtil 获取 Controller.Method 的返回值
 		Object controllerMethodResult = ReflectUtil.invokeControllerMethod(handler.getControllerClass(),
