@@ -1,28 +1,15 @@
 <?xml version="1.0"?>
 <project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0">
 	<modelVersion>4.0.0</modelVersion>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 
 	<parent>
 		<groupId>org.fast</groupId>
 		<artifactId>fast-framework</artifactId>
-		<version>0.0.1</version>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	
-	<groupId>org.fast</groupId>
+
 	<artifactId>fast-core</artifactId>
 	<name>fast-core</name>
 	<url>http://www.bysocket.com</url>
@@ -34,7 +21,7 @@
 			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
 		</license>
 	</licenses>
-	
+
 	<organization>
 		<name>BYSocket Open Source</name>
 		<url>http://www.bysocket.com</url>
@@ -47,32 +34,18 @@
 		</developer>
 	</developers>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<cglib.version>3.1</cglib.version>
-		<junit.version>4.12</junit.version>
-		<jackson.version>1.9.13</jackson.version>
-		<slf4j.version>1.7.7</slf4j.version>
-		<servlet.version>3.1.0</servlet.version>
-		<commons-lang.version>3.4</commons-lang.version>
-		<commons-collections.version>3.2.2</commons-collections.version>
-		<commons-io.version>2.4</commons-io.version>
-	</properties>
-	
 	<dependencies>
-
 		<!-- Servlet3.0 -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>${servlet.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- SLF4J -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j.version}</version>
 		</dependency>
 
 		<!--=======工具类=======-->
@@ -80,43 +53,40 @@
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
-			<version>${jackson.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-jaxrs</artifactId>
-			<version>${jackson.version}</version>
 		</dependency>
 
 		<!-- Apache Commons -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>${commons-lang.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
-			<version>${commons-collections.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>${commons-io.version}</version>
 		</dependency>
 
 		<!-- JUnit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
+			<scope>test</scope>
 		</dependency>
 
 		<!-- CGLib -->
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
-			<version>${cglib.version}</version>
 		</dependency>
 	</dependencies>
 </project>

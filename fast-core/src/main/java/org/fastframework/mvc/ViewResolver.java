@@ -13,37 +13,35 @@ import java.io.IOException;
 
 /**
  * 视图解析器
- *
+ * <p>
  * Created by bysocket on 16/8/9.
  */
 public class ViewResolver {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ViewResolver.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ViewResolver.class);
 
-	public static void resolveView(HttpServletRequest request, HttpServletResponse response,
-	                               Object controllerMethodResult,HandlerBody handler) {
-		// TODO 根据返回值返回
-		try {
-			// 请求路由
-			String requestPath   = MVCHelper.getRequestPath(request);
-			String responseMediaType = handler.getResponseMediaType();
+    public static void resolveView(HttpServletRequest request, HttpServletResponse response,
+                                   Object controllerMethodResult, HandlerBody handler) {
+        // TODO 根据返回值返回
+        try {
+            // 请求路由
+            String requestPath = MVCHelper.getRequestPath(request);
+            String responseMediaType = handler.getResponseMediaType();
 
-			if (MediaTypes.TEXT_PLAIN_UTF_8.equals(responseMediaType)) {
-				LOGGER.debug("[fast framework] {} : 返回格式CharSet = {}, 返回结果 = {}",requestPath,
-						MediaTypes.TEXT_PLAIN_UTF_8,controllerMethodResult);
-				response.getWriter().print(controllerMethodResult);
-				return;
-			}
-			else if (MediaTypes.JSON_UTF_8.equals(responseMediaType)) {
-				String resultJSON = JSONUtil.toJSONString(controllerMethodResult);
-				LOGGER.debug("[fast framework] {} : 返回格式CharSet = {}, 返回结果 = {}",requestPath,
-						MediaTypes.JSON_UTF_8,resultJSON);
-				response.setContentType(MediaTypes.JSON_UTF_8);
-				response.getWriter().print(resultJSON);
-				return;
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+            if (MediaTypes.TEXT_PLAIN_UTF_8.equals(responseMediaType)) {
+                LOGGER.debug("[fast framework] {} : 返回格式CharSet = {}, 返回结果 = {}", requestPath,
+                    MediaTypes.TEXT_PLAIN_UTF_8, controllerMethodResult);
+                response.getWriter().print(controllerMethodResult);
+                return;
+            } else if (MediaTypes.JSON_UTF_8.equals(responseMediaType)) {
+                String resultJSON = JSONUtil.toJSONString(controllerMethodResult);
+                LOGGER.debug("[fast framework] {} : 返回格式CharSet = {}, 返回结果 = {}", requestPath,
+                    MediaTypes.JSON_UTF_8, resultJSON);
+                response.getWriter().print(resultJSON);
+                return;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

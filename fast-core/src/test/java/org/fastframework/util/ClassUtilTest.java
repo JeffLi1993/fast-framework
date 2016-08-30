@@ -11,7 +11,7 @@ import java.util.List;
 public class ClassUtilTest {
     public static void main(String[] args) {
 //        ClassUtil.getClassList("org.fastframework");
-        List<Class<?>> controllerClassList =  ClassUtil.getClassListByAnnotation("org.fastframework", Controller.class);
+        List<Class<?>> controllerClassList = ClassUtil.getClassListByAnnotation("org.fastframework", Controller.class);
         return;
     }
 }

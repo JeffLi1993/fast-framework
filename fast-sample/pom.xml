@@ -1,74 +1,66 @@
 <?xml version="1.0"?>
 <project
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-        xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelVersion>4.0.0</modelVersion>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0">
+	<modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.fast</groupId>
-        <artifactId>fast-framework</artifactId>
-        <version>0.0.1</version>
-    </parent>
+	<parent>
+		<groupId>org.fast</groupId>
+		<artifactId>fast-framework</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
 
-    <groupId>org.fast</groupId>
-    <artifactId>fast-sample</artifactId>
-    <name>fast-sample</name>
-    <packaging>war</packaging>
-    <url>http://www.bysocket.com</url>
-    <description>fast framework core</description>
+	<artifactId>fast-sample</artifactId>
+	<name>fast-sample</name>
+	<packaging>war</packaging>
+	<url>http://www.bysocket.com</url>
+	<description>fast framework core</description>
 
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-        </license>
-    </licenses>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
 
-    <organization>
-        <name>BYSocket Open Source</name>
-        <url>http://www.bysocket.com</url>
-    </organization>
+	<organization>
+		<name>BYSocket Open Source</name>
+		<url>http://www.bysocket.com</url>
+	</organization>
 
-    <developers>
-        <developer>
-            <name>BYSocket Open Source</name>
-            <email>bysocket@aliyun.com</email>
-        </developer>
-    </developers>
+	<developers>
+		<developer>
+			<name>BYSocket Open Source</name>
+			<email>bysocket@aliyun.com</email>
+		</developer>
+	</developers>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <fast.version>0.0.1</fast.version>
-    </properties>
+	<dependencies>
 
-    <dependencies>
+		<!-- Fast Framework -->
+		<dependency>
+			<groupId>org.fast</groupId>
+			<artifactId>fast-core</artifactId>
+		</dependency>
+	</dependencies>
 
-        <!-- Fast Framework -->
-        <dependency>
-            <groupId>org.fast</groupId>
-            <artifactId>fast-core</artifactId>
-            <version>${fast.version}</version>
-        </dependency>
-
-    </dependencies>
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <!-- Jetty Server 插件 -->
-                <plugin>
-                    <groupId>org.eclipse.jetty</groupId>
-                    <artifactId>jetty-maven-plugin</artifactId>
-                    <version>9.2.11.v20150529</version>
-                    <configuration>
-                        <scanIntervalSeconds>10</scanIntervalSeconds>
-                        <webApp>
-                            <contextPath>/</contextPath>
-                        </webApp>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
-
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- Jetty Server 插件 -->
+				<plugin>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-maven-plugin</artifactId>
+					<version>9.2.11.v20150529</version>
+					<configuration>
+						<scanIntervalSeconds>10</scanIntervalSeconds>
+						<webApp>
+							<contextPath>/</contextPath>
+						</webApp>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>
