@@ -74,7 +74,7 @@ GET http://localhost:8080/json?name=BYSocket
 ![sample结果图](https://github.com/JeffLi1993/fast-framework/blob/master/doc/img/sample-json-result.png)
 
 ##### POST 方式
-在浏览器中打开 - application/json; charset=UTF-8 :
+在 POSTMan 或者 HTTP 客户端 :
 ````
 POST localhost:8080/user/add HTTP/1.1
 Content-Type: application/json
