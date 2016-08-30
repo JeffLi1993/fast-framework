@@ -10,15 +10,16 @@ import java.util.Properties;
 
 /**
  * .properties属性文件操作工具类
- *
+ * <p>
  * Created by bysocket on 16/7/19.
  */
 public class PropertiesUtil {
 
+    /**
+     * .properties属性文件名后缀
+     */
+    public static final String PROPERTY_FILE_SUFFIX = ".properties";
     private static final Logger LOGGER = LoggerFactory.getLogger(PropertiesUtil.class);
-
-    /** .properties属性文件名后缀 */
-    public static final String PROPERTY_FILE_SUFFIX	= ".properties";
 
     /**
      * 根据属性文件名,获取属性
@@ -30,7 +31,7 @@ public class PropertiesUtil {
         if (StringUtils.isEmpty(propsFileName))
             throw new IllegalArgumentException();
 
-        Properties  properties  = new Properties();
+        Properties properties = new Properties();
         InputStream inputStream = null;
 
         try {
@@ -42,17 +43,17 @@ public class PropertiesUtil {
                 }
 
                 inputStream = Thread.currentThread().getContextClassLoader()
-                        .getResourceAsStream(propsFileName);
+                    .getResourceAsStream(propsFileName);
                 if (null != inputStream)
                     properties.load(inputStream);
             } finally {
-                if ( null != inputStream) {
+                if (null != inputStream) {
                     inputStream.close();
                 }
             }
 
         } catch (IOException e) {
-            LOGGER.error("加载属性文件出错!",e);
+            LOGGER.error("加载属性文件出错!", e);
             throw new RuntimeException(e);
         }
 
@@ -66,7 +67,7 @@ public class PropertiesUtil {
      * @param key
      * @return
      */
-    public static String getString(Properties properties, String key){
+    public static String getString(Properties properties, String key) {
         return properties.getProperty(key);
     }
 
@@ -78,8 +79,8 @@ public class PropertiesUtil {
      * @param defaultValue
      * @return
      */
-    public static String getStringOrDefault(Properties properties, String key, String defaultValue){
-        return properties.getProperty(key,defaultValue);
+    public static String getStringOrDefault(Properties properties, String key, String defaultValue) {
+        return properties.getProperty(key, defaultValue);
     }
 
     /**
@@ -91,7 +92,7 @@ public class PropertiesUtil {
      * @param <V>
      * @return
      */
-    public static <V> V getOrDefault(Properties properties, String key, V defaultValue){
-        return (V) properties.getOrDefault(key,defaultValue);
+    public static <V> V getOrDefault(Properties properties, String key, V defaultValue) {
+        return (V) properties.getOrDefault(key, defaultValue);
     }
 }

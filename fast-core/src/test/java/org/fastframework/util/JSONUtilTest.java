@@ -77,9 +77,9 @@ class JSONObject {
     @Override
     public String toString() {
         return "JSONObject{" +
-                "age=" + age +
-                ", name='" + name + '\'' +
-                ", id=" + id +
-                '}';
+            "age=" + age +
+            ", name='" + name + '\'' +
+            ", id=" + id +
+            '}';
     }
 }

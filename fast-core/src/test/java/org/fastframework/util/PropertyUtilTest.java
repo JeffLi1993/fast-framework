@@ -17,9 +17,9 @@ public class PropertyUtilTest {
     public void testGetProperties() {
         Properties properties = PropertiesUtil.getProperties("fast");
         String fastFrameworkName = properties.getProperty("fast.framework.name");
-        String authorName        = properties.getProperty("fast.framework.author");
-        Object age               = properties.getOrDefault("fast.framework.age",10);
-        Object defaultVal        = properties.getOrDefault("fast.framework.null",10);
+        String authorName = properties.getProperty("fast.framework.author");
+        Object age = properties.getOrDefault("fast.framework.age", 10);
+        Object defaultVal = properties.getOrDefault("fast.framework.null", 10);
         System.out.println(fastFrameworkName);
         System.out.println(authorName);
         System.out.println(age.toString());
@@ -29,8 +29,8 @@ public class PropertyUtilTest {
     @Test
     public void testGetString() {
         Properties properties = PropertiesUtil.getProperties("fast");
-        String fastFrameworkName = PropertiesUtil.getString(properties,"fast.framework.name");
-        String authorName        = PropertiesUtil.getString(properties,"fast.framework.author");
+        String fastFrameworkName = PropertiesUtil.getString(properties, "fast.framework.name");
+        String authorName = PropertiesUtil.getString(properties, "fast.framework.author");
         System.out.println(fastFrameworkName);
         System.out.println(authorName);
     }
@@ -38,14 +38,14 @@ public class PropertyUtilTest {
     @Test
     public void testGetOrDefault() {
         Properties properties = PropertiesUtil.getProperties("fast");
-        Object age               = PropertiesUtil.getOrDefault(properties,"fast.framework.age",10);
-        Object defaultVal        = PropertiesUtil.getOrDefault(properties,"fast.framework.null",10);
+        Object age = PropertiesUtil.getOrDefault(properties, "fast.framework.age", 10);
+        Object defaultVal = PropertiesUtil.getOrDefault(properties, "fast.framework.null", 10);
         System.out.println(age.toString());
         System.out.println(defaultVal.toString());
     }
 
     @Test
-    public void testGetScanPackage(){
+    public void testGetScanPackage() {
         System.out.println(Config.getScanPackage());
     }
 }

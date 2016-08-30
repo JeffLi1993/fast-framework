@@ -9,31 +9,37 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * MVC 相关的帮助类
- *
+ * <p>
  * Created by bysocket on 16/7/19.
  */
 public class MVCHelper {
 
+    /**
+     * URL 目录分隔符
+     */
+    public static final String URL_PATH_SEPARATOR = "/";
+    /**
+     * 请求编码 UTF-8
+     */
+    public static final String REQ_CHARACTER_UTF_8 = "UTF-8";
+    /**
+     * 请求默认主页地址
+     */
+    public static final String REQ_DEFAULT_HOME_PAGE = "/index.html";
     private static final Logger LOGGER = LoggerFactory.getLogger(MVCHelper.class);
-
-    /** URL 目录分隔符 */
-    public static final String URL_PATH_SEPARATOR		= "/";
-    /** 请求编码 UTF-8 */
-    public static final String REQ_CHARACTER_UTF_8		= "UTF-8";
-    /** 请求默认主页地址 */
-    public static final String REQ_DEFAULT_HOME_PAGE	= "/index.html";
 
     /**
      * 获取请求路径
-     *      /servlet/MyServlet/a/b
+     * /servlet/MyServlet/a/b
+     *
      * @param request
      * @return
      */
     public static String getRequestPath(HttpServletRequest request) {
         String servletPath = request.getServletPath(); // /servlet/MyServlet
-        String pathInfo    = request.getPathInfo();    // /a/b
+        String pathInfo = request.getPathInfo();    // /a/b
 
-        return (null != servletPath ? servletPath : "") + StringUtils.defaultIfEmpty(pathInfo,StringUtils.EMPTY);
+        return (null != servletPath ? servletPath : "") + StringUtils.defaultIfEmpty(pathInfo, StringUtils.EMPTY);
     }
 
     /**
@@ -47,7 +53,7 @@ public class MVCHelper {
         try {
             response.sendRedirect(request.getContextPath() + path);
         } catch (Exception e) {
-            LOGGER.error("重定向请求失败!",e);
+            LOGGER.error("重定向请求失败!", e);
             throw new RuntimeException(e);
         }
     }

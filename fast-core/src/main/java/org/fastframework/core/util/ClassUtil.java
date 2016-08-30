@@ -17,29 +17,39 @@ import java.util.stream.Collectors;
 
 /**
  * 类扫描工具类
- *
+ * <p>
  * Created by bysocket on 16/7/20.
  */
 public class ClassUtil {
 
+    /**
+     * 包目录分隔符:点
+     */
+    public static final String PACKAGE_PATH_POINT = ".";
+    /**
+     * 包目录分隔符:点
+     */
+    public static final String PACKAGE_PATH_SEPARATOR = "/";
+    /**
+     * URL 协议名:file
+     */
+    public static final String URL_PROTOCOL_FILE = "file";
+    /**
+     * URL 协议名:jar
+     */
+    public static final String URL_PROTOCOL_JAR = "jar";
+    /**
+     * class 文件名后缀
+     */
+    public static final String CLASS_FILE_END = ".class";
+    /**
+     * class 文件分隔符:点
+     */
+    public static final String CLASS_FILE_POINT = PACKAGE_PATH_POINT;
     private static final Logger LOGGER = LoggerFactory.getLogger(ClassUtil.class);
-
-    /** 包目录分隔符:点 */
-    public static final String PACKAGE_PATH_POINT        = ".";
-    /** 包目录分隔符:点 */
-    public static final String PACKAGE_PATH_SEPARATOR    = "/";
-
-    /** URL 协议名:file */
-    public static final String URL_PROTOCOL_FILE         = "file";
-    /** URL 协议名:jar */
-    public static final String URL_PROTOCOL_JAR          = "jar";
-
-    /** class 文件名后缀 */
-    public static final String CLASS_FILE_END            = ".class";
-    /** class 文件分隔符:点 */
-    public static final String CLASS_FILE_POINT          = PACKAGE_PATH_POINT;
-
-    /** 当前线程的类加载 */
+    /**
+     * 当前线程的类加载
+     */
     private static final ClassLoader currentClassLoader = Thread.currentThread().getContextClassLoader();
 
     public static ClassLoader getCurrentClassLoader() {
@@ -54,9 +64,9 @@ public class ClassUtil {
      * @return
      */
     public static List<Class<?>> getClassListByAnnotation(String packageName, Class<? extends Annotation> annotationClass) {
-        List<Class<?>> classList     = getClassList(packageName);
+        List<Class<?>> classList = getClassList(packageName);
         return classList.stream().filter(clazz ->
-                clazz.isAnnotationPresent(annotationClass)).collect(Collectors.toList());
+            clazz.isAnnotationPresent(annotationClass)).collect(Collectors.toList());
     }
 
     /**
@@ -70,8 +80,8 @@ public class ClassUtil {
         try {
             // 从包名获取 URL 类型的资源
             Enumeration<URL> urlList = getCurrentClassLoader()
-                    .getResources(packageName.replace(PACKAGE_PATH_POINT,PACKAGE_PATH_SEPARATOR));
-            while(urlList.hasMoreElements()) {
+                .getResources(packageName.replace(PACKAGE_PATH_POINT, PACKAGE_PATH_SEPARATOR));
+            while (urlList.hasMoreElements()) {
                 URL url = urlList.nextElement();
                 if (url != null) {
                     // 获取 URL 协议名 [file] [jar]
@@ -79,14 +89,14 @@ public class ClassUtil {
                     if (URL_PROTOCOL_FILE.equals(protocol)) {
                         // 若在 class 目录,添加类
                         String packagePath = url.getPath().replaceAll("%20", " ");
-                        addClass(classList,packagePath,packageName);
+                        addClass(classList, packagePath, packageName);
                     } else if (URL_PROTOCOL_JAR.equals(protocol)) {
                         // TODO 若在 jar 包中,则解析 jar 包中的 entry
                         JarURLConnection jarURLConnection = (JarURLConnection) url.openConnection();
                         JarFile jarFile = jarURLConnection.getJarFile();
                         Enumeration<JarEntry> jarEntryEnumeration = jarFile.entries();
-                        while(jarEntryEnumeration.hasMoreElements()) {
-                            JarEntry jarEntry   = jarEntryEnumeration.nextElement();
+                        while (jarEntryEnumeration.hasMoreElements()) {
+                            JarEntry jarEntry = jarEntryEnumeration.nextElement();
                             String jarEntryName = jarEntry.getName();
                         }
                     }
@@ -109,7 +119,7 @@ public class ClassUtil {
         try {
             // 获取 包路径 下的所有 class文件列表或目录
             File[] fileList = new File(packagePath).listFiles(file ->
-                    file.isFile() && file.getName().endsWith(CLASS_FILE_END) || file.isDirectory()
+                file.isFile() && file.getName().endsWith(CLASS_FILE_END) || file.isDirectory()
             );
             // 遍历文件或目录
             for (File file : fileList) {
@@ -117,12 +127,12 @@ public class ClassUtil {
                 // 是文件
                 if (file.isFile()) {
                     // 是类名
-                    String className = fileName.substring(0,fileName.lastIndexOf(CLASS_FILE_POINT));
+                    String className = fileName.substring(0, fileName.lastIndexOf(CLASS_FILE_POINT));
                     if (StringUtils.isNoneEmpty(className)) {
                         className = packageName + PACKAGE_PATH_POINT + className;
                     }
 
-                    Class<?> clazz = loadClass(className,false);
+                    Class<?> clazz = loadClass(className, false);
                     classList.add(clazz);
                 }
                 // 是目录
@@ -156,10 +166,10 @@ public class ClassUtil {
      * @param initialize
      * @return
      */
-    public static Class<?> loadClass(String className,Boolean initialize) {
+    public static Class<?> loadClass(String className, Boolean initialize) {
         Class<?> clazz;
         try {
-            clazz = Class.forName(className,initialize,getCurrentClassLoader());
+            clazz = Class.forName(className, initialize, getCurrentClassLoader());
         } catch (ClassNotFoundException e) {
             LOGGER.error("加载类错误");
             throw new RuntimeException(e);
